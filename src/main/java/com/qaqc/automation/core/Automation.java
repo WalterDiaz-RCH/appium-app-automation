@@ -1,37 +1,35 @@
-package config;
-
+package com.qaqc.automation.core;
+import com.qaqc.automation.Test.Smoke.LoginTest;
+import com.qaqc.automation.config.Capabilities;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.options.UiAutomator2Options;
-
-import java.net.URL;
 
 public class Automation {
 
     public static void main(String[] args) {
+
+        AndroidDriver driver = null;
+
         try {
+            System.out.println("Iniciando sesión con Appium...");
 
-            UiAutomator2Options options = new UiAutomator2Options();
-            options.setDeviceName("RFCX70FV14F");
-            options.setPlatformName("Android");
-            options.setAutomationName("UiAutomator2");
+            driver = Capabilities.getDriver();
 
-            options.setApp("C:\\Users\\jbizquierdo\\Downloads\\app (6).apk");
+            System.out.println("Aplicación iniciada correctamente");
 
-            AndroidDriver driver = new AndroidDriver(
-                    new URL("http://127.0.0.1:4723"),
-                    options
-            );
+            Thread.sleep(3000);
+            //System.out.println(driver.getPageSource());
+            LoginTest login = new LoginTest(driver);
 
-            System.out.println("Sesión iniciada correctamente");
-
-            Thread.sleep(20000);
+            login.login("jbizquierdoe@gmail.com", "Megomogo1!");
+            Thread.sleep(3000);
+            driver.terminateApp("com.RedChapina.Tranzmit.MX");
+            Thread.sleep(3000);
 
             driver.quit();
             System.out.println("Sesión cerrada");
-
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("fail");
         }
+
     }
 }

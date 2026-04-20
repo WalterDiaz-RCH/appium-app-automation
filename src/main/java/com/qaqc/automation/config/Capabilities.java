@@ -1,11 +1,12 @@
-package config;
+package com.qaqc.automation.config;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 
 import java.net.URL;
+import java.time.Duration;
 
-public class capabilities {
+public class Capabilities {
 
     public static AndroidDriver getDriver() {
         AndroidDriver driver = null;
@@ -15,20 +16,23 @@ public class capabilities {
 
             options.setAutomationName("UiAutomator2");
             options.setPlatformName("Android");
-            options.setPlatformVersion("16");
             options.setDeviceName("RFCX70FV14F");
-            options.setApp("/Users/jbizquierdo/Downloads/app (6).apk");
-            options.setAppPackage("com.android.settings");
-            options.setAppActivity("com.android.settings.Settings");
+
+            options.setAppPackage("com.RedChapina.Tranzmit.MX");
+            options.setAppActivity("com.RedChapina.Tranzmit.MX.MainActivity");
+
+            options.setNoReset(true);
 
             driver = new AndroidDriver(
                     new URL("http://127.0.0.1:4723"),
                     options
             );
 
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("No funciona");
+            throw new RuntimeException("Error al crear el driver");
         }
 
         return driver;
