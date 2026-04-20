@@ -7,12 +7,7 @@
     <groupId>com.qaqc.automation</groupId>
     <artifactId>Appium_projecto</artifactId>
     <version>1.0-SNAPSHOT</version>
-<<<<<<< HEAD
-    <packaging>pom</packaging>
-
-=======
     <packaging>jar</packaging>
->>>>>>> de5e0c73109df39ca4ee9c7ba8f4b34ba2ec13fd
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
